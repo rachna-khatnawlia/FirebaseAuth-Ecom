@@ -1,5 +1,5 @@
 //import liraries
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
 import Button from '../../../Components/ButtonComponent';
 import { AuthContext } from '../../../Components/FirebaseAuthProvider';
@@ -8,9 +8,13 @@ import WrapperContainer from '../../../Components/WrapperContainer';
 import navigationStrings from '../../../navigation/navigationStrings';
 import colors from '../../../styles/colors';
 import { moderateScale, textScale } from '../../../styles/responsiveSize';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // create a component
 const Login = ({ navigation }) => {
+
+
+
     const [upDateData, setUpdateData] = useState({
         email: '',
         pass: '',
@@ -23,11 +27,11 @@ const Login = ({ navigation }) => {
         updateState({ [key]: value })
     }
 
-    const { register } = useContext(AuthContext)
-    const { login } = useContext(AuthContext)
+    const { login, googleLogin } = useContext(AuthContext)
     const onLogin = () => {
         login(email, pass)
     }
+  
     return (
         <>
             <WrapperContainer>
@@ -52,6 +56,7 @@ const Login = ({ navigation }) => {
                     </TouchableOpacity>
                     <Button
                         buttonText='Login With Google'
+                        onPress={() => googleLogin()}
                     />
                     <Button
                         buttonText='Login With Facebook'

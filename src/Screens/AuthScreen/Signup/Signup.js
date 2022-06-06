@@ -30,13 +30,13 @@ const SignUp = ({ navigation }) => {
         if (email == '') {
             alert("Empty Email..!!")
         } else {
-            if(pass == '' || cpass == ''){
+            if (pass == '' || cpass == '') {
                 alert("password should not be empty")
-            }else{
-                if(pass === cpass){
-                    register(email,pass)
+            } else {
+                if (pass === cpass) {
+                    register(email, pass)
                     alert("signup successful..!!")
-                }else{
+                } else {
                     alert("passowrd and confirm password must be same");
                 }
             }

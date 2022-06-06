@@ -1,6 +1,7 @@
 //import liraries
 import React, { createContext, useState } from 'react';
 import auth from '@react-native-firebase/auth';
+import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 export const AuthContext = createContext();
 
@@ -17,26 +18,23 @@ const FirebaeAuthPorvider = ({ children }) => {
                         await auth().signInWithEmailAndPassword(email, password);
                     } catch (error) {
                         console.log(error, "error occurred at auth proviider")
-
                     }
                 },
                 googleLogin: async () => {
-                    try {
+                    // Get the users ID token
+                    const { idToken } = await GoogleSignin.signIn();
 
-                        const { idToken } = await GoogleSignin.signIn();
-                        const googleCredential = auth.GoogleAuthProvider.credential(idToken);
-                        await auth().signInWithCredential(googleCredential);
-                    } catch (error) {
-                        console.log("error in goolge login")
+                    // Create a Google credential with the token
+                    const googleCredential = auth.GoogleAuthProvider.credential(idToken);
 
-                    }
+                    // Sign-in the user with the credential
+                    return auth().signInWithCredential(googleCredential);
                 },
                 register: async (email, password) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password);
                     } catch (error) {
                         console.log(error)
-
                     }
                 },
                 logout: async () => {
