@@ -1,17 +1,18 @@
 //import liraries
 import React, { Component } from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import FirebaeAuthPorvider from './src/Components/FirebaseAuthProvider';
 import Routes from './src/navigation/Routes';
 
 // create a component
 const App = () => {
   return (
     <>
-      <Routes/>
-    
+      <FirebaeAuthPorvider>
+        <Routes />
+      </FirebaeAuthPorvider>
+
     </>
   );
 };
 
-//make this component available to the app
 export default App;

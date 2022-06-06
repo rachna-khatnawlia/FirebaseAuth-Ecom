@@ -8,6 +8,8 @@ import { moderateScale, moderateScaleVertical, width } from '../styles/responsiv
 const Input = ({
     placeholder,
     pass,
+    value,
+    onChangeText
 }) => {
     return (
         <View style={styles.container}>
@@ -15,6 +17,8 @@ const Input = ({
                 placeholder={placeholder}
                 style={styles.textInput}
                 secureTextEntry={pass}
+                value={value}
+                onChangeText={onChangeText}
             />
 
         </View>
