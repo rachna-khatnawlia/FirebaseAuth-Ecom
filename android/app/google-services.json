@@ -29,6 +29,13 @@
             {
               "client_id": "211994185769-2ejt0jnq4b7ieu4idik8jci1lli75tr7.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "211994185769-gcaftabq1tta5qjqf39s2n2d4a845n0u.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.firebaseauth"
+              }
             }
           ]
         }
