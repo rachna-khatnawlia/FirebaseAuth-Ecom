@@ -12,13 +12,9 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 
 // create a component
 const Login = ({ navigation }) => {
-
-
-
     const [upDateData, setUpdateData] = useState({
         email: '',
         pass: '',
-
     })
     const { email, pass } = upDateData;
     const updateState = (data) => setUpdateData(state => ({ ...state, ...data }));
@@ -31,7 +27,12 @@ const Login = ({ navigation }) => {
     const onLogin = () => {
         login(email, pass)
     }
-  
+    useEffect(() => {
+        GoogleSignin.configure({
+            iosClientId: '211994185769-gcaftabq1tta5qjqf39s2n2d4a845n0u.apps.googleusercontent.com',
+            webClientId: Platform.OS === 'ios' ? '211994185769-gcaftabq1tta5qjqf39s2n2d4a845n0u.apps.googleusercontent.com' : '294493462688-h97ofossathphrdfur493t02q1vut65l.apps.googleusercontent.com'
+        });
+    }, [])
     return (
         <>
             <WrapperContainer>
