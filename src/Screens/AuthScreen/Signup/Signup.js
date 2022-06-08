@@ -1,13 +1,14 @@
 //import liraries
 import React, { useContext, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
+import { ScrollView } from 'react-native-gesture-handler';
 import Button from '../../../Components/ButtonComponent';
 import { AuthContext } from '../../../Components/FirebaseAuthProvider';
+import GoBack from '../../../Components/goBack';
 import Input from '../../../Components/Input';
 import WrapperContainer from '../../../Components/WrapperContainer';
-import navigationStrings from '../../../navigation/navigationStrings';
-import colors from '../../../styles/colors';
+import strings from '../../../constants/lang';
 import { textScale, moderateScale } from '../../../styles/responsiveSize';
 
 
@@ -58,7 +59,9 @@ const SignUp = ({ navigation }) => {
 
     return (
         <WrapperContainer>
-            <View style={{ flex: 1, justifyContent: 'center' }}>
+            <GoBack headerText="SignUp " />
+            <ScrollView style={{ flex: 1 }}>
+                <Text style={styles.heading}>{strings.CR_NW_ACCOUNT_TEXT}</Text>
                 <Input
                     placeholder="Email"
                     value={email}
@@ -77,18 +80,13 @@ const SignUp = ({ navigation }) => {
                     onChangeText={(value) => onChangeTextResult('cpass', value)}
                 />
                 {/* <Text>Data is {email}, {pass}, {cpass}</Text> */}
+            </ScrollView>
+            <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
                 <Button
                     buttonText='SignUp'
                     onPress={onSignup}
                 />
-                <View style={styles.signupNow}>
-                    <Text style={{ fontSize: textScale(13) }}>Already Have an account? </Text>
-                    <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.LOGIN)}>
-                        <Text style={{ color: colors.themeredColor, fontSize: textScale(13) }}>Login Now</Text>
-                    </TouchableOpacity>
-                </View>
-
-            </View>
+            </KeyboardAvoidingView>
         </WrapperContainer>
     );
 };
@@ -104,6 +102,13 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         marginBottom: moderateScale(15)
+    },
+    heading:{
+        fontSize:textScale(17),
+        paddingHorizontal:moderateScale(15),
+        // textAlign:'justify',
+        paddingBottom:moderateScale(20),
+        paddingTop:moderateScale(5)
     }
 });
 

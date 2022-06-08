@@ -2,7 +2,7 @@
 import React from 'react';
 import { View, StyleSheet } from 'react-native';
 import { TextInput } from 'react-native-gesture-handler';
-import { moderateScale, moderateScaleVertical, width } from '../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale, width } from '../styles/responsiveSize';
 
 // create a component
 const Input = ({
@@ -31,12 +31,14 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     textInput: {
-        borderWidth: 0.8,
+        borderWidth: 1.5,
         flexDirection: 'row',
         width: width - 30,
+        borderRadius:moderateScale(5),
         paddingHorizontal: moderateScale(10),
-        paddingVertical: moderateScaleVertical(12),
-        marginVertical: moderateScaleVertical(10)
+        paddingVertical: moderateScaleVertical(15),
+        marginVertical: moderateScaleVertical(10),
+        fontSize:textScale(13.5)
     }
 });
 

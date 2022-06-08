@@ -35,7 +35,7 @@ export default function Button({
 
 const styles = StyleSheet.create({
     btnStyle: {
-        height: moderateScale(48),
+        height: moderateScale(52),
         width: width-28,
         backgroundColor: '#837893',
         borderRadius: moderateScale(3),
@@ -46,7 +46,7 @@ const styles = StyleSheet.create({
         marginVertical:moderateScaleVertical(7)
     },
     buttonTxt: {
-        fontSize: textScale(14),
+        fontSize: textScale(16),
         fontWeight: '600',
         textAlign: 'center',
         color: colors.white,

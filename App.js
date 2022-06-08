@@ -1,4 +1,5 @@
 //import liraries
+import 'react-native-gesture-handler';
 import React, { useEffect } from 'react';
 import FlashMessage from 'react-native-flash-message';
 import FirebaeAuthPorvider from './src/Components/FirebaseAuthProvider';
@@ -11,8 +12,8 @@ const App = () => {
   return (
     <>
       <FirebaeAuthPorvider>
-        <FlashMessage position="top" />
         <Routes />
+        <FlashMessage position="top" />
       </FirebaeAuthPorvider>
 
     </>
