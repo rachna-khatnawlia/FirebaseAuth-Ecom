@@ -5,6 +5,7 @@ import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import navigationStrings from '../navigation/navigationStrings';
 import { useEffect } from 'react/cjs/react.production.min';
+import { showMessage } from 'react-native-flash-message';
 
 export const AuthContext = createContext();
 
@@ -12,7 +13,7 @@ export const AuthContext = createContext();
 const FirebaeAuthPorvider = ({ children, navigation }) => {
     const [user, setUser] = useState(null);
     const [sentEmail, setSentEmail] = useState()
-   
+
     return (
         <AuthContext.Provider
             value={{
@@ -23,9 +24,18 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
 
                 login: async (email, password) => {
                     try {
-                        await auth().signInWithEmailAndPassword(email, password);
+                        await auth().signInWithEmailAndPassword(email, password).then(() => {
+                            showMessage({
+                                message: "Login Successfull",
+                                type: "info",
+                            })
+                        });
+
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error, "error occurred at auth proviider")
                     }
                 },
@@ -40,7 +50,10 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                         // Sign-in the user with the credential
                         await auth().signInWithCredential(googleCredential);
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error)
                     }
                 },
@@ -66,7 +79,10 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                         // Sign-in the user with the credential
                         await auth().signInWithCredential(facebookCredential);
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error);
                     }
                 },
@@ -74,17 +90,27 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                     try {
                         await auth().createUserWithEmailAndPassword(email, password);
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error)
                     }
                 },
                 forgotPass: async (email) => {
                     try {
-                        await auth().sendPasswordResetEmail(email);
-                        setSentEmail(true)
-                        alert("Password reset link sent!");
+                        await auth().sendPasswordResetEmail(email)
+                            .then(() => {
+                                alert("Password reset link sent!")
+                                navigation.navigate(navigationStrings.LOGIN)
+                                setSentEmail(true)
+                            });
+
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error)
                         setSentEmail(false)
                     }
@@ -93,7 +119,10 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                     try {
                         await auth().signOut();
                     } catch (error) {
-                        alert(error.message)
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
                         console.log(error)
                     }
                 }

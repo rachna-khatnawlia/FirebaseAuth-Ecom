@@ -3,11 +3,10 @@ import React, { useContext, useState, useEffect } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 import Button from '../../../Components/ButtonComponent';
 import { AuthContext } from '../../../Components/FirebaseAuthProvider';
+import GoBack from '../../../Components/goBack';
 import Input from '../../../Components/Input';
 ;
 import WrapperContainer from '../../../Components/WrapperContainer';
-import colors from '../../../styles/colors';
-import { textScale } from '../../../styles/responsiveSize';
 
 // create a component
 const ForgotPassword = ({ navigation }) => {
@@ -31,6 +30,7 @@ const ForgotPassword = ({ navigation }) => {
 
     return (
         <WrapperContainer>
+            <GoBack/>
             <View style={{ flex: 1, justifyContent: 'center' }}>
                 <Input
                     placeholder="Email"

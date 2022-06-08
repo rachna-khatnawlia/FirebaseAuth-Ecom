@@ -24,9 +24,11 @@ const Login = ({ navigation }) => {
     }
 
     const { login, googleLogin, fbLogin } = useContext(AuthContext)
+
     const onLogin = () => {
         login(email, pass)
     }
+    
     useEffect(() => {
         GoogleSignin.configure({
             // webClientId: '211994185769-2ejt0jnq4b7ieu4idik8jci1lli75tr7.apps.googleusercontent.com',

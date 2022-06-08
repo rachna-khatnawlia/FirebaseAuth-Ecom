@@ -1,13 +1,14 @@
 //import liraries
 import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { showMessage } from 'react-native-flash-message';
 import Button from '../../../Components/ButtonComponent';
 import { AuthContext } from '../../../Components/FirebaseAuthProvider';
 import Input from '../../../Components/Input';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import navigationStrings from '../../../navigation/navigationStrings';
 import colors from '../../../styles/colors';
-import { textScale, moderateScale, moderateScaleVertical, } from '../../../styles/responsiveSize';
+import { textScale, moderateScale } from '../../../styles/responsiveSize';
 
 
 // create a component
@@ -28,16 +29,28 @@ const SignUp = ({ navigation }) => {
 
     const onSignup = () => {
         if (email == '') {
-            alert("Empty Email..!!")
+            showMessage({
+                message: "Empty Email..!!",
+                type: "danger",
+            })
         } else {
             if (pass == '' || cpass == '') {
-                alert("password should not be empty")
+                showMessage({
+                    message: "password should not be empty",
+                    type: "danger",
+                })
             } else {
                 if (pass === cpass) {
                     register(email, pass)
-                    alert("signup successful..!!")
+                    showMessage({
+                        message: "signup successfull..!!",
+                        type: "success",
+                    })
                 } else {
-                    alert("passowrd and confirm password must be same");
+                    showMessage({
+                        message: "passowrd and confirm password must be same",
+                        type: "danger",
+                    })
                 }
             }
         }
@@ -63,9 +76,7 @@ const SignUp = ({ navigation }) => {
                     value={cpass}
                     onChangeText={(value) => onChangeTextResult('cpass', value)}
                 />
-                <Text>
-                    Data is {email}, {pass}, {cpass}
-                </Text>
+                {/* <Text>Data is {email}, {pass}, {cpass}</Text> */}
                 <Button
                     buttonText='SignUp'
                     onPress={onSignup}
