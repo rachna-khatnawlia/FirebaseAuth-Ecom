@@ -9,6 +9,7 @@ import navigationStrings from '../../../navigation/navigationStrings';
 import colors from '../../../styles/colors';
 import { moderateScale, textScale } from '../../../styles/responsiveSize';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
+import strings from '../../../constants/lang';
 
 // create a component
 const Login = ({ navigation }) => {
@@ -28,7 +29,7 @@ const Login = ({ navigation }) => {
     const onLogin = () => {
         login(email, pass)
     }
-    
+
     useEffect(() => {
         GoogleSignin.configure({
             // webClientId: '211994185769-2ejt0jnq4b7ieu4idik8jci1lli75tr7.apps.googleusercontent.com',
@@ -41,38 +42,38 @@ const Login = ({ navigation }) => {
             <WrapperContainer>
                 <View style={{ flex: 1, justifyContent: 'center' }}>
                     <Input
-                        placeholder="Email"
+                        placeholder={strings.EMAIL}
                         value={email}
                         onChangeText={(value) => onChangeTextResult('email', value)}
                     />
                     <Input
-                        placeholder="Password"
+                        placeholder={strings.PASSWORD}
                         pass={true}
                         value={pass}
                         onChangeText={(value) => onChangeTextResult('pass', value)}
                     />
                     <Button
-                        buttonText='Login'
+                        buttonText={strings.LOGIN}
                         onPress={onLogin}
                     />
                     <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.FORGOT_PASSWORD)}>
-                        <Text style={styles.forgot}>Forgot Password. ?</Text>
+                        <Text style={styles.forgot}>{strings.FORGET_PASS}</Text>
                     </TouchableOpacity>
                     <Button
-                        buttonText='Login With Google'
+                        buttonText={strings.GOOGLE_LOGIN}
                         onPress={() => googleLogin()}
                     />
                     <Button
-                        buttonText='Login With Facebook'
+                        buttonText={strings.FB_LOGIN}
                         onPress={() => fbLogin()}
                     />
                     <Button
-                        buttonText='Login With Apple'
+                        buttonText={strings.APPLE_LOGIN}
                     />
                     <View style={styles.signupNow}>
-                        <Text style={{ fontSize: textScale(13) }}>Don't Have an account? </Text>
+                        <Text style={{ fontSize: textScale(13) }}>{strings.NO_ACCOUNT}</Text>
                         <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}>
-                            <Text style={{ color: colors.themeredColor, fontSize: textScale(13) }}>SignUp Now</Text>
+                            <Text style={{ color: colors.themeredColor, fontSize: textScale(13) }}>{strings.SIGNUP_NOW}</Text>
                         </TouchableOpacity>
                     </View>
 
