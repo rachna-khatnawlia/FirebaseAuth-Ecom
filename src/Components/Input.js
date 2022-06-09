@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
     textInput: {
         borderWidth: 1.5,
         flexDirection: 'row',
-        width: width - 30,
+        width: "100%",
         borderRadius:moderateScale(5),
         paddingHorizontal: moderateScale(10),
         paddingVertical: moderateScaleVertical(15),

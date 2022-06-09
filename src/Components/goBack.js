@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         fontWeight:'500',
         paddingHorizontal:moderateScale(15),
         alignSelf:'center',
-    }
+    },
 });
 
 //make this component available to the app

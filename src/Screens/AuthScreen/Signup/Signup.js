@@ -1,6 +1,6 @@
 //import liraries
 import React, { useContext, useState } from 'react';
-import { Text, StyleSheet, KeyboardAvoidingView, Platform } from 'react-native';
+import { Text, StyleSheet, KeyboardAvoidingView, Platform, View } from 'react-native';
 import { showMessage } from 'react-native-flash-message';
 import { ScrollView } from 'react-native-gesture-handler';
 import Button from '../../../Components/ButtonComponent';
@@ -60,7 +60,7 @@ const SignUp = ({ navigation }) => {
     return (
         <WrapperContainer>
             <GoBack headerText="SignUp " />
-            <ScrollView style={{ flex: 1 }}>
+            <ScrollView style={{ flex: 1, paddingHorizontal: moderateScale(15) }}>
                 <Text style={styles.heading}>{strings.CR_NW_ACCOUNT_TEXT}</Text>
                 <Input
                     placeholder="Email"
@@ -82,10 +82,12 @@ const SignUp = ({ navigation }) => {
                 {/* <Text>Data is {email}, {pass}, {cpass}</Text> */}
             </ScrollView>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
-                <Button
-                    buttonText='SignUp'
-                    onPress={onSignup}
-                />
+                <View style={{paddingHorizontal:moderateScale(15)}}>
+                    <Button
+                        buttonText='SignUp'
+                        onPress={onSignup}
+                    />
+                </View>
             </KeyboardAvoidingView>
         </WrapperContainer>
     );
@@ -103,12 +105,11 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         marginBottom: moderateScale(15)
     },
-    heading:{
-        fontSize:textScale(17),
-        paddingHorizontal:moderateScale(15),
+    heading: {
+        fontSize: textScale(17),
         // textAlign:'justify',
-        paddingBottom:moderateScale(20),
-        paddingTop:moderateScale(5)
+        paddingBottom: moderateScale(20),
+        paddingTop: moderateScale(5)
     }
 });
 

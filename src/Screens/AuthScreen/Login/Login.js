@@ -28,6 +28,7 @@ const Login = ({ navigation }) => {
 
     const onLogin = () => {
         login(email, pass)
+        
     }
 
     useEffect(() => {
@@ -40,7 +41,7 @@ const Login = ({ navigation }) => {
     return (
         <>
             <WrapperContainer>
-                <View style={{ flex: 1, justifyContent: 'center' }}>
+                <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: moderateScale(15) }}>
                     <Input
                         placeholder={strings.EMAIL}
                         value={email}
@@ -56,9 +57,16 @@ const Login = ({ navigation }) => {
                         buttonText={strings.LOGIN}
                         onPress={onLogin}
                     />
-                    <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.FORGOT_PASSWORD)}>
-                        <Text style={styles.forgot}>{strings.FORGET_PASS}</Text>
-                    </TouchableOpacity>
+                    <View style={styles.phoneLoginRow}>
+                        <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.OTP_LOGIN)}>
+                            <Text style={styles.forgot}>{strings.PHONE_LOGIN}</Text>
+                        </TouchableOpacity>
+                        <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.FORGOT_PASSWORD)}>
+                            <Text style={[styles.forgot]}>{strings.FORGET_PASS}</Text>
+                        </TouchableOpacity>
+                    </View>
+
+
                     <Button
                         buttonText={strings.GOOGLE_LOGIN}
                         onPress={() => googleLogin()}
@@ -70,10 +78,11 @@ const Login = ({ navigation }) => {
                     <Button
                         buttonText={strings.APPLE_LOGIN}
                     />
+
                     <View style={styles.signupNow}>
-                        <Text style={{ fontSize: textScale(13) }}>{strings.NO_ACCOUNT}</Text>
+                        <Text style={{ fontSize: textScale(13.5) }}>{strings.NO_ACCOUNT}</Text>
                         <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.SIGNUP)}>
-                            <Text style={{ color: colors.themeredColor, fontSize: textScale(13) }}>{strings.SIGNUP_NOW}</Text>
+                            <Text style={{ color: colors.themeredColor, fontSize: textScale(14) }}>{strings.SIGNUP_NOW}</Text>
                         </TouchableOpacity>
                     </View>
 
@@ -88,11 +97,17 @@ const styles = StyleSheet.create({
     forgot: {
         textAlign: 'center',
         marginVertical: moderateScale(8),
-        fontSize: textScale(13)
+        fontSize: textScale(13.5),
+        color: colors.themeredColor,
+        fontWeight: '400'
     },
     signupNow: {
         flexDirection: 'row',
         justifyContent: 'center'
+    },
+    phoneLoginRow: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
     }
 });
 

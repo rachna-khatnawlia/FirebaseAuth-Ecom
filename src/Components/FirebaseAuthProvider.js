@@ -1,10 +1,9 @@
 //import liraries
-import React, { createContext, useState } from 'react';
+import React, { createContext, useState, useEffect } from 'react';
 import auth from '@react-native-firebase/auth';
 import { GoogleSignin } from '@react-native-google-signin/google-signin';
 import { LoginManager, AccessToken } from 'react-native-fbsdk-next';
 import navigationStrings from '../navigation/navigationStrings';
-import { useEffect } from 'react/cjs/react.production.min';
 import { showMessage } from 'react-native-flash-message';
 
 export const AuthContext = createContext();
@@ -13,14 +12,14 @@ export const AuthContext = createContext();
 const FirebaeAuthPorvider = ({ children, navigation }) => {
     const [user, setUser] = useState(null);
     const [sentEmail, setSentEmail] = useState()
+    const [confirm, setConfirm] = useState(null);
 
     return (
         <AuthContext.Provider
             value={{
-                user,
-                setUser,
-                sentEmail,
-                setSentEmail,
+                user, setUser,
+                sentEmail, setSentEmail,
+                confirm, setConfirm,
 
                 login: async (email, password) => {
                     try {
@@ -39,6 +38,32 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                         console.log(error, "error occurred at auth proviider")
                     }
                 },
+                phoneLogin: async (countryCode, phoneNum) => {
+                    const no = (countryCode + phoneNum);
+                    let phone = `+${(no.toString())}`
+                    console.log(phone)
+                    try {
+                        const confirmation = await auth().signInWithPhoneNumber(phone);
+                        setConfirm(confirmation);
+                        console.log(confirm)
+                        alert("otp sent")
+
+                    } catch (error) {
+                        showMessage({
+                            message: error.message,
+                            type: "danger",
+                        })
+                        console.log(error, "error occurred at auth proviider")
+                    }
+                },
+                confirmCode: async (phone) => {
+                    try {
+                        await confirm.confirm(code);
+                      } catch (error) {
+                        console.log('Invalid code.');
+                      }
+                },
+                
                 googleLogin: async () => {
                     try {
                         // Get the users ID token

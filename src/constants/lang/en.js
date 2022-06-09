@@ -11,4 +11,7 @@ export default {
     SIGNUP_NOW:'SignUp Now',
     CR_NW_ACCOUNT_TEXT: 'Create an account so you can continue.',
     RESET_PASSWORD_TXT:"Enter Email and we'll send you Password Reset link",
+    PHONE_LOGIN: "Log In with Phone Number",
+    SEND_OTP: 'Enter the 4-digit code sent to you at',
+    RESEND_OTP: 'Resend OTP in '
 }

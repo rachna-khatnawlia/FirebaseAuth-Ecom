@@ -19,7 +19,6 @@ target 'FirebaseAuth' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  pod 'RNGestureHandler', :path => '../node_modules/react-native-gesture-handler'
 
   target 'FirebaseAuthTests' do
     inherit! :complete

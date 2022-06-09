@@ -36,7 +36,7 @@ export default function Button({
 const styles = StyleSheet.create({
     btnStyle: {
         height: moderateScale(52),
-        width: width-28,
+        width: "100%",
         backgroundColor: '#837893',
         borderRadius: moderateScale(3),
         flexDirection: 'row',

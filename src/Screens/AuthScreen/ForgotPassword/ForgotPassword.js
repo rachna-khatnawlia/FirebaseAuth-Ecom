@@ -32,9 +32,9 @@ const ForgotPassword = ({ navigation }) => {
     return (
         <WrapperContainer>
             <GoBack headerText={strings.FORGET_PASSWORD} />
-            <ScrollView style={{ flex: 1 }}>
-                <Text style={styles.heading}>{strings.RESET_PASSWORD_TXT}</Text>
 
+            <ScrollView style={{ flex: 1, marginHorizontal: moderateScale(15) }}>
+                <Text style={styles.heading}>{strings.RESET_PASSWORD_TXT}</Text>
                 <Input
                     placeholder="Email"
                     value={email}
@@ -42,12 +42,14 @@ const ForgotPassword = ({ navigation }) => {
                 />
                 <Text>{email}</Text>
             </ScrollView>
-            <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
 
-                <Button
-                    buttonText='Send Reset Link Via Email'
-                    onPress={_onResetPassword}
-                />
+            <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
+                <View style={{ marginHorizontal: moderateScale(15) }}>
+                    <Button
+                        buttonText='Send Reset Link Via Email'
+                        onPress={_onResetPassword}
+                    />
+                </View>
             </KeyboardAvoidingView>
 
         </WrapperContainer>
