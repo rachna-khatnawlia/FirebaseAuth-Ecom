@@ -1,6 +1,6 @@
 //import liraries
 import React, { useState, useContext, useEffect } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Modal } from 'react-native';
 import Button from '../../../Components/ButtonComponent';
 import { AuthContext } from '../../../Components/FirebaseAuthProvider';
 import Input from '../../../Components/Input';
@@ -16,8 +16,9 @@ const Login = ({ navigation }) => {
     const [upDateData, setUpdateData] = useState({
         email: '',
         pass: '',
+        modalVisible: false
     })
-    const { email, pass } = upDateData;
+    const { email, pass, modalVisible } = upDateData;
     const updateState = (data) => setUpdateData(state => ({ ...state, ...data }));
     const onChangeTextResult = (key, value) => {
         console.log(key, value, "key");
@@ -28,7 +29,7 @@ const Login = ({ navigation }) => {
 
     const onLogin = () => {
         login(email, pass)
-        
+
     }
 
     useEffect(() => {
@@ -41,6 +42,19 @@ const Login = ({ navigation }) => {
     return (
         <>
             <WrapperContainer>
+                <TouchableOpacity style={styles.langContainer}>
+                    <Modal
+                        animationType="slide"
+                        transparent={true}
+                        visible={modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                            setModalVisible(!modalVisible);
+                        }}>
+
+                        <Text style={styles.lang}>Change Language</Text>
+                    </Modal>
+                </TouchableOpacity>
                 <View style={{ flex: 1, justifyContent: 'center', paddingHorizontal: moderateScale(15) }}>
                     <Input
                         placeholder={strings.EMAIL}
@@ -108,6 +122,14 @@ const styles = StyleSheet.create({
     phoneLoginRow: {
         flexDirection: 'row',
         justifyContent: 'space-between',
+    },
+    langContainer: {
+        paddingHorizontal: moderateScale(15)
+    },
+    lang: {
+        textAlign: 'right',
+        fontSize: textScale(14),
+        fontWeight: 'bold'
     }
 });
 

@@ -45,7 +45,7 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                     try {
                         const confirmation = await auth().signInWithPhoneNumber(phone);
                         setConfirm(confirmation);
-                        console.log(confirm)
+                        console.log(confirm) 
                         alert("otp sent")
 
                     } catch (error) {
