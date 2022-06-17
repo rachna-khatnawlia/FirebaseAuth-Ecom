@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { Home } from '../Screens';
+import { AdminHome, UploadNewProduct } from '../Screens';
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
 
@@ -9,6 +9,9 @@ const MainStack = (Stack) => {
     return (
         <>
             <Stack.Screen name={navigationStrings.DRAWER} component={DrawerStack} options={{ headerShown: false }} />
+            <Stack.Screen name={navigationStrings.ADMIN_HOME} component={AdminHome} options={{ headerShown: false }} />
+            <Stack.Screen name={navigationStrings.UPLOAD_NEW_PRODUCT} component={UploadNewProduct} options={{ headerShown: true }} />
+
         </>
     );
 };

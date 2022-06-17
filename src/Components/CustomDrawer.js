@@ -8,15 +8,17 @@ import {
 import { AuthContext } from './FirebaseAuthProvider';
 import imagePath from '../constants/imagePath';
 import { height, moderateScale, textScale, width } from '../styles/responsiveSize';
+import navigationStrings from '../navigation/navigationStrings';
 
 export function CustomDrawer(props) {
     const { user, logout } = useContext(AuthContext)
-    console.log(width)
+    const { navigation } = props;
     return (
         <DrawerContentScrollView {...props}>
             <View style={{ position: 'relative', height: height }}>
                 <Image source={imagePath.profile} style={styles.profile} />
                 <Text style={{ textAlign: 'center' }}>{user?._user?.email}</Text>
+
                 <TouchableOpacity style={styles.drawerNav}>
                     <Image
                         source={imagePath.logout}
@@ -24,19 +26,16 @@ export function CustomDrawer(props) {
                     />
                     <Text style={styles.drawerTxt}>SignOut</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.drawerNav}>
+
+                <TouchableOpacity
+                    style={styles.drawerNav}
+                    onPress={()=>navigation.navigate(navigationStrings.ADMIN_HOME)}
+                >
                     <Image
                         source={imagePath.logout}
                         style={styles.drawerIcon}
                     />
-                    <Text style={styles.drawerTxt}>SignOut</Text>
-                </TouchableOpacity>
-                <TouchableOpacity style={styles.drawerNav}>
-                    <Image
-                        source={imagePath.logout}
-                        style={styles.drawerIcon}
-                    />
-                    <Text style={styles.drawerTxt}>SignOut</Text>
+                    <Text style={styles.drawerTxt}>Admin</Text>
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.drawerNav}>
                     <Image
@@ -46,7 +45,7 @@ export function CustomDrawer(props) {
                     <Text style={styles.drawerTxt}>Settings</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={[styles.drawerNav, { position: 'absolute', bottom: '9%' }]}  onPress={() => logout()}>
+                <TouchableOpacity style={[styles.drawerNav, { position: 'absolute', bottom: '9%' }]} onPress={() => logout()}>
                     <Image
                         source={imagePath.logout}
                         style={styles.drawerIcon}

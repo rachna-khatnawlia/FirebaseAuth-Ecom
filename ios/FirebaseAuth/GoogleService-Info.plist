@@ -30,7 +30,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:211994185769:ios:3aae19059c37219d8b4c38</string>
-
+  
   <key>CFBundleURLTypes</key>
   <array>
     <dict>

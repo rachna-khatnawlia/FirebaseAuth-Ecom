@@ -13,5 +13,6 @@ export default {
     RESET_PASSWORD_TXT:"Enter Email and we'll send you Password Reset link",
     PHONE_LOGIN: "Log In with Phone Number",
     SEND_OTP: 'Enter the 4-digit code sent to you at',
-    RESEND_OTP: 'Resend OTP in '
+    RESEND_OTP: 'Resend OTP in ',
+    NEW_PRODUCT:'Upload a New Product'
 }

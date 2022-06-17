@@ -7,4 +7,6 @@ export default {
     SETTINGS: 'Settings',
     OTP_LOGIN: "OtpLogin",
     CONFIRM_OTP:'ConfirmOtp',
+    ADMIN_HOME: 'AdminHome',
+    UPLOAD_NEW_PRODUCT: 'UploadNewProduct',
 }

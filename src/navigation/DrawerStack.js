@@ -1,7 +1,7 @@
 //import liraries
 import React, { Component } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Home, Settings } from '../Screens';
+import { AdminHome, Home, Settings } from '../Screens';
 import navigationStrings from './navigationStrings';
 import { CustomDrawer } from '../Components/CustomDrawer';
 
@@ -16,7 +16,7 @@ const DrawerStack = (Stack) => {
                 initialRouteName={navigationStrings.HOME}
             >
                 <Drawer.Screen name={navigationStrings.HOME} component={Home} options={{headerShown:false}}/>
-               {/*<Drawer.Screen name={navigationStrings.SETTINGS} component={Settings} options={{headerShown:false}}/> */}
+                {/* <Drawer.Screen name={navigationStrings.ADMIN_HOME} component={AdminHome} options={{headerShown:false}}/> */}
             </Drawer.Navigator>
 
         </>
