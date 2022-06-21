@@ -9,4 +9,5 @@ export default {
     CONFIRM_OTP:'ConfirmOtp',
     ADMIN_HOME: 'AdminHome',
     UPLOAD_NEW_PRODUCT: 'UploadNewProduct',
+    UPLOAD_CATEGORY: 'UploadCategory',
 }

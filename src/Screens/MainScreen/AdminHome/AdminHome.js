@@ -5,7 +5,7 @@ import { AuthContext } from '../../../Components/FirebaseAuthProvider';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import imagePath from '../../../constants/imagePath';
 import navigationStrings from '../../../navigation/navigationStrings';
-import { moderateScale, width } from '../../../styles/responsiveSize';
+import { moderateScale, moderateScaleVertical, textScale, width } from '../../../styles/responsiveSize';
 
 // create a component
 const Home = ({ navigation }) => {
@@ -15,7 +15,10 @@ const Home = ({ navigation }) => {
                 <Text>Welcome Admin</Text>
 
                 <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.UPLOAD_NEW_PRODUCT)}>
-                    <Text>Upload Product</Text>
+                    <Text style={styles.listItem}>Upload Product</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.UPLOAD_CATEGORY)}>
+                    <Text style={styles.listItem}>Upload Category</Text>
                 </TouchableOpacity>
             </View>
         </WrapperContainer>
@@ -24,7 +27,13 @@ const Home = ({ navigation }) => {
 
 // define your styles
 const styles = StyleSheet.create({
-
+    listItem:{
+        textAlign:'center',
+        fontSize:textScale(18),
+        color:'pink',
+        fontWeight:'bold',
+        marginVertical:moderateScaleVertical(6)
+    }
 
 });
 

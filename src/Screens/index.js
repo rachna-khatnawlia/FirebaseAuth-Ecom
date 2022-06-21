@@ -8,3 +8,4 @@ export {default as Home} from './MainScreen/Home/Home';
 export {default as Settings} from './MainScreen/Settings/Settings';
 export {default as AdminHome} from './MainScreen/AdminHome/AdminHome';
 export {default as UploadNewProduct} from './MainScreen/UploadNewProduct/UploadNewProduct';
+export {default as UploadCategory} from './MainScreen/UploadCategory/UploadCategory';
