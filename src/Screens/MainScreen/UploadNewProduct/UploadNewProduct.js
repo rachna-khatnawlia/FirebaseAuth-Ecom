@@ -77,7 +77,7 @@ const UploadNewProduct = ({ navigation }) => {
         );
 
     }
-    const uploadImage = async () =>{
+    const uploadImage = async () => {
         const uploaduri = productImg;
         const filename = uploaduri.substring(uploaduri.lastIndexOf('/') + 1);
 
@@ -102,21 +102,28 @@ const UploadNewProduct = ({ navigation }) => {
     const submitProduct = async () => {
         const image = await uploadImage();
         console.log(image)
-        // firestore()
-        //     .collection('Products')
-        //     .add({
-        //         ProductImg: productImg,
-        //         ProductName: productName,
-        //         Category: category,
-        //         Description: description,
-        //         Price: `Rs. ${price}`,
-        //         Rating: rating,
-        //         postTime: firestore.Timestamp.fromDate(new Date())
-        //     }).then(() => {
-        //         alert("Product Uploaded")
-        //     }).catch((error) => {
-        //         console.log(error);
-        //     })
+
+        firestore()
+            .collection('Products')
+            .add({
+                ProductImg: image,
+                ProductName: productName,
+                Category: category,
+                Description: description,
+                Price: `Rs. ${price}`,
+                Rating: rating,
+                postTime: firestore.Timestamp.fromDate(new Date())
+            }).then(() => {
+                alert("Product Uploaded");
+                onChangeTextResult("productName", null);
+                onChangeTextResult("category", null);
+                onChangeTextResult("description", null);
+                onChangeTextResult("price", null);
+                onChangeTextResult("rating", null);
+
+            }).catch((error) => {
+                console.log(error);
+            })
 
     }
     return (
@@ -166,11 +173,11 @@ const UploadNewProduct = ({ navigation }) => {
                     {
                         uploading ?
                             <ActivityIndicator size="large" color="grey" />
-                        :
-                        <Button
-                        buttonText='SignUp'
-                        onPress={submitProduct}
-                        />
+                            :
+                            <Button
+                                buttonText='SignUp'
+                                onPress={submitProduct}
+                            />
                     }
                 </View>
             </KeyboardAvoidingView>

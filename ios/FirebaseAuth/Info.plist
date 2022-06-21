@@ -43,6 +43,8 @@
 	<string>1</string>
 	<key>FacebookAppID</key>
 	<string>605437403867736</string>
+  <key>FacebookClientToken</key>
+  <string>dd7337c93ceb1a8578af37858a5097ba</string>
 	<key>FacebookDisplayName</key>
 	<string>Ecommerce_Firebase</string>
 	<key>LSApplicationQueriesSchemes</key>
