@@ -20,6 +20,9 @@ const Home = ({ navigation }) => {
                 <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.UPLOAD_CATEGORY)}>
                     <Text style={styles.listItem}>Upload Category</Text>
                 </TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate(navigationStrings.UPLOAD_OFFERS)}>
+                    <Text style={styles.listItem}>Upload Offer</Text>
+                </TouchableOpacity>
             </View>
         </WrapperContainer>
     );

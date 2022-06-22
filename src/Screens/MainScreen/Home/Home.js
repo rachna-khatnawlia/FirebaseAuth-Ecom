@@ -6,6 +6,7 @@ import WrapperContainer from '../../../Components/WrapperContainer';
 import imagePath from '../../../constants/imagePath';
 import { moderateScale, moderateScaleVertical, textScale, width } from '../../../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
+import navigationStrings from '../../../navigation/navigationStrings';
 
 // create a component
 const Home = ({ navigation }) => {
@@ -67,33 +68,43 @@ const Home = ({ navigation }) => {
         fetchCategory();
     }, [])
 
-
-    const renderProduct = ({ item, i }) => {
+    const _moveToCategoryBasedProduct = (item) => {
+        console.log(item.name)
+        navigation.navigate(navigationStrings.CATEGORY_BASED_PRODUCTS,
+            { category: item.name }
+        )
+    }
+    const renderProduct = ({ item }) => {
+        const name = item.name;
+        const myArray = name.split(" ")
+        const slice6words = myArray.slice(0, 5);
+        const string = slice6words.join(' ');
+        console.log(string);
         return (
             <View style={styles.flatlistContainer}>
                 <Image source={{ uri: item.image }}
                     style={styles.productImg}
                 />
-                <View style={{ paddingVertical: moderateScaleVertical(5) }}>
-                    <Text style={styles.productTitle}>{item.name}({item.category})</Text>
-                    <Text>{item.description}</Text>
+                <View style={{ paddingVertical: moderateScaleVertical(5), width:width/3 }}>
+                    <Text style={styles.productTitle}>{string}...</Text>
                     <Text>{item.price}</Text>
                     <Text>{item.rating}</Text>
                 </View>
             </View>
         )
     }
-
     const renderCategory = ({ item }) => {
-        console.log(item)
+        // console.log(item)
         return (
-            <TouchableOpacity style={styles.flatlistContainerCategory}>
+            <TouchableOpacity style={styles.flatlistContainerCategory}
+                onPress={() => _moveToCategoryBasedProduct(item)}
+            >
                 <Image source={{ uri: item.image }}
                     style={styles.categoryImg}
                     resizeMode='stretch'
                 />
                 <View style={{ paddingVertical: moderateScaleVertical(5) }}>
-                    <Text style={styles.productTitle}>{item.name}</Text>
+                    <Text style={styles.categoryTitle}>{item.name}</Text>
                 </View>
             </TouchableOpacity>
         )
@@ -114,6 +125,7 @@ const Home = ({ navigation }) => {
                     horizontal={true}
                     data={product}
                     renderItem={renderProduct}
+                    showsHorizontalScrollIndicator = {false}
                 />
                 <Text>Categories</Text>
                 <FlatList
@@ -137,7 +149,7 @@ const styles = StyleSheet.create({
         borderWidth: 0.5,
         margin: moderateScale(8),
         marginLeft: 0,
-        height: moderateScale(215),
+        height: moderateScale(240),
         borderRadius: moderateScale(5),
     },
     productImg: {
@@ -147,6 +159,8 @@ const styles = StyleSheet.create({
     productTitle: {
         textAlign: 'center',
         fontSize: textScale(14),
+        textAlign:'justify',
+        marginBottom:moderateScale(6)
     },
     flatlistContainerCategory: {
         // padding: moderateScale(5),
@@ -156,6 +170,12 @@ const styles = StyleSheet.create({
         marginLeft: 0,
         height: moderateScale(160),
         borderRadius: moderateScale(3),
+    },
+    categoryTitle: {
+        textAlign: 'center',
+        fontSize: textScale(14),
+        fontWeight:'600',
+        marginBottom:moderateScale(6)
     },
     categoryImg: {
         width: width / 3.5,

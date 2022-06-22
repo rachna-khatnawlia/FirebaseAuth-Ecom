@@ -10,4 +10,6 @@ export default {
     ADMIN_HOME: 'AdminHome',
     UPLOAD_NEW_PRODUCT: 'UploadNewProduct',
     UPLOAD_CATEGORY: 'UploadCategory',
+    CATEGORY_BASED_PRODUCTS: 'CateoryBasedProducts',
+    UPLOAD_OFFERS:'UploadOffer',
 }

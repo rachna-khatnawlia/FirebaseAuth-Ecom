@@ -9,3 +9,5 @@ export {default as Settings} from './MainScreen/Settings/Settings';
 export {default as AdminHome} from './MainScreen/AdminHome/AdminHome';
 export {default as UploadNewProduct} from './MainScreen/UploadNewProduct/UploadNewProduct';
 export {default as UploadCategory} from './MainScreen/UploadCategory/UploadCategory';
+export {default as CateoryBasedProducts} from './MainScreen/CateoryBasedProducts/CateoryBasedProducts';
+export {default as UploadOffer} from './MainScreen/UploadOffer/UploadOffer';
