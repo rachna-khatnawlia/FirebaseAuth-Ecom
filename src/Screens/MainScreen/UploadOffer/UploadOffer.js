@@ -92,14 +92,14 @@ const UploadOffer = () => {
             console.log(error);
         }
     }
-    const submitProduct = async () => {
+    const submitOffer = async () => {
         const image = await uploadImage();
         console.log(image)
 
         firestore()
             .collection('ProductOffers')
             .add({
-                CategoryImg: image,
+                OfferImg: image,
                 postTime: firestore.Timestamp.fromDate(new Date())
             }).then(() => {
                 alert("Product Uploaded");
@@ -135,7 +135,7 @@ const UploadOffer = () => {
                             :
                             <Button
                                 buttonText='Upload Offer'
-                                onPress={submitProduct}
+                                onPress={submitOffer}
                             />
                     }
                 </View>

@@ -1,8 +1,9 @@
 //import liraries
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
 import SmoothPinCodeInput from 'react-native-smooth-pincode-input';
 import Button from '../../../Components/ButtonComponent';
+import { AuthContext } from '../../../Components/FirebaseAuthProvider';
 import GoBack from '../../../Components/goBack';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import colors from '../../../styles/colors';
@@ -12,6 +13,11 @@ import { moderateScale, moderateScaleVertical, textScale } from '../../../styles
 const ConfirmOtp = () => {
     const [code, setCode] = useState();
 
+    const { confirmCode } = useContext(AuthContext);
+
+    const _onOtpMatch = () => {
+        confirmCode(code)
+    }
     return (
         <>
             <WrapperContainer>
@@ -38,7 +44,7 @@ const ConfirmOtp = () => {
                     <View style={{ paddingHorizontal: moderateScale(15) }}>
                         <Button
                             buttonText='SignUp'
-                        // onPress={onSignup}
+                            onPress={_onOtpMatch}
                         />
                     </View>
                 </KeyboardAvoidingView>

@@ -29,7 +29,7 @@ const OtpLogin = ({ navigation }) => {
     const { phoneLogin } = useContext(AuthContext);
 
     const _onPhoneLogin = () => {
-        phoneLogin(countryCode,phone)
+        phoneLogin(countryCode, phone)
         navigation.navigate(navigationStrings.CONFIRM_OTP)
     }
     return (

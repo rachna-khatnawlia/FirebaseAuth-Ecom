@@ -56,10 +56,19 @@ const FirebaeAuthPorvider = ({ children, navigation }) => {
                         console.log(error, "error occurred at auth proviider")
                     }
                 },
-                confirmCode: async (phone) => {
+                confirmCode: async (code) => {
                     try {
-                        await confirm.confirm(code);
+                        await confirm.confirm(code).then(() => {
+                            showMessage({
+                                message: "Login Successfull",
+                                type: "info",
+                            })
+                        });
                       } catch (error) {
+                        showMessage({
+                            message: "Invalid Code",
+                            type: "danger",
+                        })
                         console.log('Invalid code.');
                       }
                 },

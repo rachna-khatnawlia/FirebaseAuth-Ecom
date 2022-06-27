@@ -6,9 +6,10 @@ import WrapperContainer from '../../../Components/WrapperContainer';
 import { moderateScale, moderateScaleVertical, textScale, width } from '../../../styles/responsiveSize';
 import firestore from '@react-native-firebase/firestore';
 import Button from '../../../Components/ButtonComponent';
+import navigationStrings from '../../../navigation/navigationStrings';
 
 // create a component
-const CategoryBasedProducts = ({ route }) => {
+const CategoryBasedProducts = ({ navigation, route }) => {
     const categoryOfProducts = route?.params?.category;
 
     const { user } = useContext(AuthContext)
@@ -28,14 +29,15 @@ const CategoryBasedProducts = ({ route }) => {
                         console.log("total products", querySnapshot.size)
                         setProductCount(querySnapshot.size)
                         querySnapshot.forEach(doc => {
-                            const { Category, Description, Price, ProductImg, ProductName, Rating } = doc.data();
+                            const { Category, Description, Price, ProductImg, ProductName, Rating, postTime } = doc.data();
                             productList.push({
                                 image: ProductImg,
                                 name: ProductName,
                                 category: Category,
                                 description: Description,
                                 price: Price,
-                                rating: Rating
+                                rating: Rating,
+                                postTime:postTime,
                             });
                             setProduct(productList);
                         })
@@ -65,9 +67,10 @@ const CategoryBasedProducts = ({ route }) => {
                     <Text>{item.price}</Text>
                     <Text>{item.rating}</Text>
                     <Button
-                        buttonText="Buy Now"
+                        buttonText="View Product"
                         btnStyle={{ height: moderateScale(38) }}
                         buttonTxt={{ fontSize: textScale(13.5) }}
+                        onPress={() => { navigation.navigate(navigationStrings.VIEW_PRODUCT,{item:item}) }}
                     />
                 </View>
             </View>
@@ -79,7 +82,6 @@ const CategoryBasedProducts = ({ route }) => {
             <Text style={styles.categoryHeading}>{categoryOfProducts}</Text>
             {
                 productCount ?
-                    
                     <View style={{ marginHorizontal: moderateScale(10) }}>
                         <FlatList
                             data={product}

@@ -1,6 +1,6 @@
 //import liraries
 import React from 'react';
-import { AdminHome, CateoryBasedProducts, UploadCategory, UploadNewProduct, UploadOffer } from '../Screens';
+import { AdminHome, CateoryBasedProducts, UploadCategory, UploadNewProduct, UploadOffer, ViewProduct } from '../Screens';
 import DrawerStack from './DrawerStack';
 import navigationStrings from './navigationStrings';
 
@@ -14,6 +14,8 @@ const MainStack = (Stack) => {
             <Stack.Screen name={navigationStrings.UPLOAD_CATEGORY} component={UploadCategory} options={{ headerShown: true }} />
             <Stack.Screen name={navigationStrings.CATEGORY_BASED_PRODUCTS} component={CateoryBasedProducts} options={{headerShown:true}}/>
             <Stack.Screen name={navigationStrings.UPLOAD_OFFERS} component={UploadOffer} options={{headerShown:true}}/>
+            <Stack.Screen name={navigationStrings.VIEW_PRODUCT} component={ViewProduct} options={{headerShown:false}}/>
+
         </>
     );
 };

@@ -21,7 +21,7 @@ const Login = ({ navigation }) => {
     const { email, pass, modalVisible } = upDateData;
     const updateState = (data) => setUpdateData(state => ({ ...state, ...data }));
     const onChangeTextResult = (key, value) => {
-        console.log(key, value, "key");
+        // console.log(key, value, "key");
         updateState({ [key]: value })
     }
 

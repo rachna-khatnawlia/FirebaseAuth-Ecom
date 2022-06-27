@@ -12,4 +12,5 @@ export default {
     UPLOAD_CATEGORY: 'UploadCategory',
     CATEGORY_BASED_PRODUCTS: 'CateoryBasedProducts',
     UPLOAD_OFFERS:'UploadOffer',
+    VIEW_PRODUCT:'ViewProduct',
 }
