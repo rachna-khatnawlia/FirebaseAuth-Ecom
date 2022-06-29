@@ -30,6 +30,9 @@ const CategoryBasedProducts = ({ navigation, route }) => {
                         setProductCount(querySnapshot.size)
                         querySnapshot.forEach(doc => {
                             const { Category, Description, Price, ProductImg, ProductName, Rating, postTime } = doc.data();
+                            const id = doc.id;
+                            // console.log(`${id}`);
+
                             productList.push({
                                 image: ProductImg,
                                 name: ProductName,
@@ -37,7 +40,8 @@ const CategoryBasedProducts = ({ navigation, route }) => {
                                 description: Description,
                                 price: Price,
                                 rating: Rating,
-                                postTime:postTime,
+                                postTime: postTime,
+                                id: id
                             });
                             setProduct(productList);
                         })
@@ -52,6 +56,7 @@ const CategoryBasedProducts = ({ navigation, route }) => {
     }, [])
 
     const renderProduct = ({ item }) => {
+        console.log(item)
         const name = item.name;
         const myArray = name.split(" ")
         const slice6words = myArray.slice(0, 6);
@@ -70,7 +75,7 @@ const CategoryBasedProducts = ({ navigation, route }) => {
                         buttonText="View Product"
                         btnStyle={{ height: moderateScale(38) }}
                         buttonTxt={{ fontSize: textScale(13.5) }}
-                        onPress={() => { navigation.navigate(navigationStrings.VIEW_PRODUCT,{item:item}) }}
+                        onPress={() => { navigation.navigate(navigationStrings.VIEW_PRODUCT, { item: item }) }}
                     />
                 </View>
             </View>

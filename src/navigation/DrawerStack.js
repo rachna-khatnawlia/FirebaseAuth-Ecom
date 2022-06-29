@@ -4,6 +4,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { AdminHome, Home, Settings } from '../Screens';
 import navigationStrings from './navigationStrings';
 import { CustomDrawer } from '../Components/CustomDrawer';
+import TabStack from './TabStack';
 
 const Drawer = createDrawerNavigator();
 
@@ -15,8 +16,7 @@ const DrawerStack = (Stack) => {
                 drawerContent={(props) => <CustomDrawer{...props} />}
                 initialRouteName={navigationStrings.HOME}
             >
-                <Drawer.Screen name={navigationStrings.HOME} component={Home} options={{headerShown:false}}/>
-                {/* <Drawer.Screen name={navigationStrings.ADMIN_HOME} component={AdminHome} options={{headerShown:false}}/> */}
+                <Drawer.Screen name={navigationStrings.TAB} component={TabStack} options={{headerShown:false}}/>
             </Drawer.Navigator>
 
         </>

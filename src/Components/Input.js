@@ -34,11 +34,11 @@ const styles = StyleSheet.create({
         borderWidth: 1.5,
         flexDirection: 'row',
         width: "100%",
-        borderRadius:moderateScale(5),
+        borderRadius: moderateScale(5),
         paddingHorizontal: moderateScale(10),
         paddingVertical: moderateScaleVertical(15),
         marginVertical: moderateScaleVertical(10),
-        fontSize:textScale(13.5)
+        fontSize: textScale(13.5)
     }
 });
 

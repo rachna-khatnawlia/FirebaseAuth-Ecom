@@ -12,3 +12,4 @@ export {default as UploadCategory} from './MainScreen/UploadCategory/UploadCateg
 export {default as CateoryBasedProducts} from './MainScreen/CateoryBasedProducts/CateoryBasedProducts';
 export {default as UploadOffer} from './MainScreen/UploadOffer/UploadOffer';
 export {default as ViewProduct} from './MainScreen/Viewproduct/ViewProduct';
+export {default as Cart} from './MainScreen/Cart/Cart';

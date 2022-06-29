@@ -1,20 +1,42 @@
 //import liraries
-import React, { Component } from 'react';
+import React, { Component, useContext, useState } from 'react';
 import { View, Text, StyleSheet, Image, ScrollView, KeyboardAvoidingView, Platform } from 'react-native';
+import firestore from '@react-native-firebase/firestore';
 import Button from '../../../Components/ButtonComponent';
+import { AuthContext } from '../../../Components/FirebaseAuthProvider';
 import GoBack from '../../../Components/goBack';
 import WrapperContainer from '../../../Components/WrapperContainer';
 import { moderateScale, textScale, width } from '../../../styles/responsiveSize';
 
 // create a component
 const ViewProduct = ({ route }) => {
+    const [cartAdded, setCartAdded] = useState(false)
+
     const data = route?.params?.item;
+    const productId = data?.id;
     const productImg = data.image;
-    console.log(data)
+
+    const { user } = useContext(AuthContext);
+    const userId = user?._user?.uid
+    console.log(userId, productId)
+    const _onAddToCart = () => {
+        firestore()
+            .collection(`Cart ${userId}`)
+            .add({
+                ProductId: productId,
+                UserId: userId,
+                PostTime: firestore.Timestamp.fromDate(new Date())
+            }).then(() => {
+                alert("Product Uploaded");
+                setCartAdded(true)
+            }).catch((error) => {
+                console.log(error);
+            })
+    }
     return (
         <WrapperContainer>
             <ScrollView>
-                <GoBack/>
+                <GoBack />
                 <View style={{ paddingHorizontal: moderateScale(15) }}>
                     {/* <Text>{data?.category}</Text> */}
                     <Text style={styles.title}>{data?.name}</Text>
@@ -42,7 +64,7 @@ const ViewProduct = ({ route }) => {
                 </View>
             </ScrollView>
             <KeyboardAvoidingView enabled={true} behavior={Platform.OS == 'android' ? 'height' : 'padding'}>
-                <View style={{ flexDirection: 'row', paddingHorizontal: moderateScale(15), justifyContent:'space-between' }}>
+                <View style={{ flexDirection: 'row', paddingHorizontal: moderateScale(15), justifyContent: 'space-between' }}>
 
                     <View style={{ flex: 0.49 }}>
                         <Button
@@ -52,10 +74,18 @@ const ViewProduct = ({ route }) => {
                     </View>
 
                     <View style={{ flex: 0.49 }}>
-                        <Button
-                            buttonText='Add to Cart'
-                        // onPress={submitOffer}
-                        />
+                        {
+                            cartAdded ?
+                                <Button
+                                    buttonText={'View Cart'}
+                                // onPress={_onAddToCart}
+                                />
+                                :
+                                <Button
+                                    buttonText={'Add to Cart'}
+                                    onPress={_onAddToCart}
+                                />
+                        }
                     </View>
 
 

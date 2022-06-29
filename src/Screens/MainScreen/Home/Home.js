@@ -9,6 +9,7 @@ import firestore from '@react-native-firebase/firestore';
 import navigationStrings from '../../../navigation/navigationStrings';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { ScrollView } from 'react-native-gesture-handler';
+import colors from '../../../styles/colors';
 
 // create a component
 const Home = ({ navigation }) => {
